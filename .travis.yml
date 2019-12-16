@@ -9,22 +9,16 @@ branches:
 before_install:
   - docker pull hadolint/hadolint
 
-defore_script:
+script:
   - docker run --rm -i hadolint/hadolint hadolint --ignore DL3018 - < 12/Dockerfile
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-jobs:
-  include:
-    - stage: test
-      script:
-        - cd 10
-        - docker run --rm -i hadolint/hadolint hadolint --ignore DL3018 - < Dockerfile
-        - docker build -t jegbertmanh/docker-node-alpine-git:10 .
-      script:
-        - cd 12
-        - docker run --rm -i hadolint/hadolint hadolint --ignore DL3018 - < Dockerfile
-        - docker build -t jegbertmanh/docker-node-alpine-git:12 .
-    - stage: deploy
-      script:
-        - docker push jegbertmanh/docker-node-alpine-git:10
-        - docker push jegbertmanh/docker-node-alpine-git:12
+  - cd 10
+  - docker run --rm -i hadolint/hadolint hadolint --ignore DL3018 - < Dockerfile
+  - docker build -t jegbertmanh/docker-node-alpine-git:10 .
+  - cd ..
+  - cd 12
+  - docker run --rm -i hadolint/hadolint hadolint --ignore DL3018 - < Dockerfile
+  - docker build -t jegbertmanh/docker-node-alpine-git:12 .
+  - docker push jegbertmanh/docker-node-alpine-git:10
+  - docker push jegbertmanh/docker-node-alpine-git:12
