@@ -6,9 +6,12 @@ ARG REFRESHED_AT
 ENV REFRESHED_AT $REFRESHED_AT
 
 RUN apk add --no-cache \
-  git \
-  openssh \
-  bash \
+  abuild \
+  binutils \
+  build-base \
+  cmake \
+  extra-cmake-modules \
+  gcc \
   python2 \
   python3
 
