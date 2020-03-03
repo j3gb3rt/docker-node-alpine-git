@@ -8,5 +8,7 @@ ENV REFRESHED_AT $REFRESHED_AT
 RUN apk add --no-cache \
   git \
   openssh \
-  bash
+  bash \
+  python2 \
+  python3
 
