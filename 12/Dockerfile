@@ -6,6 +6,12 @@ ARG REFRESHED_AT
 ENV REFRESHED_AT $REFRESHED_AT
 
 RUN apk add --no-cache \
+  # essentials
+  bash \
+  openssh \
+  git \
+
+  # build tools
   abuild \
   binutils \
   build-base \
