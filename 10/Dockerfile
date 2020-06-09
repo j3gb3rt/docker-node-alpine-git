@@ -19,4 +19,5 @@ RUN apk add --no-cache \
   extra-cmake-modules \
   gcc \
   python2 \
-  python3
+  python3 \
+  util-linux
